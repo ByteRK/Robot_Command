@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="bgimg">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>萝莉机器人指令集</title>
+    <meta name="description" content="萝莉机器人指令教程网">
+    <meta name="keywords" content="萝莉机器人指令教程网">
+    <meta name="author" content="Ricken">
+
+    <link rel="icon" href="./src/robot.png" type="./images/x-icon">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <style>
+        .canvas {
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+    </style>
+    <script src="https://files-upyun.ricken.cn/jquery.min.js"></script>
+    <!-- <script src="./js/jquery-3.2.1.min.js"></script> -->
+    <!-- <div class="tooltips">
+        <span>
+            <iframe src="https://music.163.com/outchain/player?type=0&id=3052064923&auto=1&height=280" width=330
+                height="300" frameborder="no" marginwidth="0" marginheight="0"></iframe>
+        </span>
+    </div> -->
+</head>
+
+<body>
+    <!-- 粒子背景 -->
+    <div style="position: fixed;width:100%;height: 100%;">
+        <canvas id="canvas" style="position:absolute"></canvas>
+    </div>
+    <audio style="display:none; height: 0" id="bg-music" preload="auto"
+        src="https://files-upyun.ricken.cn/music/yycy.mp3"></audio>
+    <div id="top">
+        <main id="top_main">
+            <div id="top_logo">
+                <div>
+                    <img src="https://files-upyun.ricken.cn/icon/dog_ci/dog.jpg" onmouseover="mouseOver()" onmouseout="mouseOut()" id="mainimg">
+                </div>
+            </div>
+            <div id="top_title">
+                <img id="top_title01" alt="" src="./src/toptitle.png">
+                <div id="call">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <p><span><strong>联系方式</strong></span></p>
+                    <p><span><strong>客服微信:Sy134165</strong></span></p>
+                </div>
+                <div class="container display fade in" id="partial" data-display-name="navs">
+
+                    <div class="heading">
+                        <div class="avatar"><I class="icon icon-double-angle-down"></I></div>
+                        <div class="title"><strong>常规功能</strong></div>
+                    </div>
+                    <div class="list with-divider compact">
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">开启功能</span>启用以下所有功能，不包含入群欢迎</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title">
+                                <span class="label primary rounded outline">点歌</span>
+                                <span class="label primary rounded outline">举牌</span>
+                                <span class="label primary rounded outline">签名</span>
+                                <span class="label primary rounded outline">电影</span>
+                                <span class="label primary rounded outline">找茬</span>
+                                <span class="label primary rounded outline">打劫</span>
+                                <span class="label primary rounded outline">礼物</span>
+                                <span class="label primary rounded outline">签到</span>
+                                <span class="label primary rounded outline">积分</span>
+                                <span class="label primary rounded outline">奴隶</span>
+                                <span class="label primary rounded outline">结婚</span>
+                                <span class="label primary rounded outline">逼婚</span>
+                                <span class="label primary rounded outline">抢婚</span>
+                                <span class="label primary rounded outline">猜歌</span>
+                                <span class="label primary rounded outline">猜数字</span>
+                                <span class="label primary rounded outline">猜成语</span>
+                                <span class="label primary rounded outline">猜车标</span>
+                                <span class="label primary rounded outline">猜英雄</span>
+                                <span class="label primary rounded outline">一站到底</span>
+                                <span class="label primary rounded outline">超级词库</span>
+                                <span class="label primary rounded outline">成语接龙</span>
+                                <span class="label primary rounded outline">被艾回复</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">关闭功能</span>禁用当前群的AI助手，会关闭入群欢迎</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">关闭功能1</span>禁用当前群的AI助手，保留入群欢迎</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">关闭功能2</span>禁用当前群的AI助手，保留入群欢迎和坚空
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">开启入群欢迎</span>用户进群欢迎文字提示，包含语音和，卡片头像
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">关闭入群语音</span>关闭用户入群时语音提示</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">关闭入群头像</span>关闭用户入群时卡片头像提示</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span
+                                    class="label primary rounded">欢迎语#XXX</span>设置入群欢迎内容为XXX，没有反应的回复：开启入群欢迎</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">有效期</span>查看当前群到期时间</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">群报告</span>刷新本地群成员昵称数据</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">查看管理</span>查看本群超管和普通管理</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded"> 小黑屋 </span>查看禁用功能的用户，移除黑名单：@某人 333
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">查看黑名单</span>查看禁用功能的用户，移除黑名单：@某人 333
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span
+                                    class="label primary rounded">查看永久黑名单</span>查看禁止进群用户名单，解除：解除永久黑名单#wxid</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空管理员</span>清空本群普通管理</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空黑名单</span>清空本群小黑屋（禁用功能）用户</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">开通#XXXXX</span>利用激活码激活本群，激活人员自动成为本群超管
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 666</span>设置当前群管理员权限（有数量限制）
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 555</span>取消当前群管理员权限</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX
+                                    4444</span>将某人踢出群，进群再次自动踢出去；解除回复：查看永久黑名单</div><span <span
+                                class="label blue rounded">超管</span>
+                        </div>
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 78</span>将某人踢出群</div><span <span
+                                class="label red rounded">群管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX
+                                    444</span>加入小黑屋，AI助手不再回复XXX某人指令，查看回复：小黑屋</div><span <span
+                                class="label red rounded">群管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX
+                                    333</span>移出小黑屋，AI助手再次应答XXX某人指令，或者回复：移出小黑屋#wxid</div><span <span
+                                class="label red rounded">群管</span>
+                        </div>
+                    </div>
+
+                    <div class="heading">
+                        <div class="avatar"><I class="icon icon-double-angle-down"></I></div>
+                        <div class="title"><strong>单个功能开关</strong></div>
+                    </div>
+                    <div class="list with-divider compact">
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">开启XX</span></span> XX是某个功能名称，例如：开启点歌
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">关闭XX</span></span> XX是某个功能名称，例如：关闭点歌
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+
+                        <div class="item">
+                            <div class="title">
+                                <span class="label primary rounded outline">一站到底</span>
+                                <span class="label primary rounded outline">超级词库</span>
+                                <span class="label primary rounded outline">成语接龙</span>
+                                <span class="label primary rounded outline">入群欢迎</span>
+                                <span class="label primary rounded outline">入群语音</span>
+                                <span class="label primary rounded outline">入群头像</span>
+                                <span class="label primary rounded outline">被艾回复</span>
+                                <span class="label primary rounded outline">猜数字</span>
+                                <span class="label primary rounded outline">猜成语</span>
+                                <span class="label primary rounded outline">猜车标</span>
+                                <span class="label primary rounded outline">猜歌</span>
+                                <span class="label primary rounded outline">举牌</span>
+                                <span class="label primary rounded outline">签名</span>
+                                <span class="label primary rounded outline">电影</span>
+                                <span class="label primary rounded outline">找茬</span>
+                                <span class="label primary rounded outline">打劫</span>
+                                <span class="label primary rounded outline">礼物</span>
+                                <span class="label primary rounded outline">签到</span>
+                                <span class="label primary rounded outline">积分</span>
+                                <span class="label primary rounded outline">奴隶</span>
+                                <span class="label primary rounded outline">结婚</span>
+                                <span class="label primary rounded outline">逼婚</span>
+                                <span class="label primary rounded outline">抢婚</span>
+                                <span class="label primary rounded outline">点歌</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="heading">
+                        <div class="avatar"><I class="icon icon-double-angle-down"></I></div>
+                        <div class="title"><strong>结束游戏</strong></div>
+                    </div>
+                    <div class="list with-divider compact">
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">退出XX</span></span> XX是某个游戏名称，例如：退出猜歌
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="title">
+                                <span class="label primary rounded outline">一站到底</span>
+                                <span class="label primary rounded outline">成语接龙</span>
+                                <span class="label primary rounded outline">猜数字</span>
+                                <span class="label primary rounded outline">猜成语</span>
+                                <span class="label primary rounded outline">猜车标</span>
+                                <span class="label primary rounded outline">猜英雄</span>
+                                <span class="label primary rounded outline">猜歌</span>
+                                <span class="label primary rounded outline">找茬</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="heading">
+                        <div class="avatar"><I class="icon icon-double-angle-down"></I></div>
+                        <div class="title"><strong>金币魅力</strong></div>
+                    </div>
+                    <div class="list with-divider compact">
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 加金币#10</span>给XXX增加10金币，加多变负数，慎重
+                            </div><span class="label red rounded">群管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 加积分#10</span>给XXX增加10积分，加多变负数，慎重
+                            </div><span class="label red rounded">群管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 加魅力#10</span>给XXX增加10魅力，加多变负数，慎重
+                            </div><span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">批量加魅力#10</span>给所有签到过用户加10魅力</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">批量加金币#10</span>给所有签到过用户加10金币</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">批量加积分#10</span>给所有签到过用户加10积分</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">批量加身价#10</span>给所有签到过用户加10身价</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空积分</span>清空本群所有用户积分</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空金币</span>清空本群所有用户金币</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空魅力</span>清空本群所有用户魅力</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空结婚</span>清空本群所有用户结婚数据</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空奴隶</span>清空本群所有用户奴隶数据</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空签到</span>清空本群所有用户签到数据</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">清空打劫</span>清空本群所有用户打劫数据</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 金币清零</span>把XXX金币归零</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 积分清零</span>把XXX积分归零</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 身价清零</span>把XXX身价归零</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 魅力清零</span>把XXX魅力归零</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 清空结婚道具</span>把XXX结婚道具效果复位</div>
+                            <span class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded">@XXX 仲裁离婚</span>棒打鸳鸯</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label green rounded">我的发言</span>查询本人群内发言详情</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label green rounded">我的邀请</span>查询本人邀请用户进群数量</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label green rounded">我的金币</span>查询本人金币，积分，魅力，身价详情</div>
+                        </div>
+                    </div>
+
+
+                    <div class="heading">
+                        <div class="avatar"><I class="icon icon-double-angle-down"></I></div>
+                        <div class="title"><strong>排行榜</strong></div>
+                    </div>
+                    <div class="list with-divider compact">
+
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">日活跃榜</span>当天群内发言统计排行</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">月活跃榜</span>当月群内发言统计排行</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">总活跃榜</span>群内所有发言统计排行</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">潜水统计</span>统计群内长期未发言用户</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">当日潜水统计</span>统计当天群内未发言用户</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">邀请排行榜</span>邀请排行</div><span
+                                class="label blue rounded">超管</span>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">金币排行榜</span>金币排行，当天签到才会上榜</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">积分排行榜</span>积分排行，当天签到才会上榜</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">魅力排行榜</span>魅力排行，当天签到才会上榜</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">身价排行榜</span>身价排行，当天签到才会上榜</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">累计签到排行榜</span>累计签到排行，当天签到才会上榜</div>
+                        </div>
+                        <div class="item">
+                            <div class="title"><span class="label primary rounded outline">排行榜</span><span
+                                    class="label green rounded">连续签到排行榜</span>连续签到排行，当天签到才会上榜</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </main>
+    </div>
+
+
+    <div id="footer">
+        <span id="foot_copyright">
+            <p>Build By <a class="author" href="#" target="_blank" style="color: #fffa65;">YUIO</a> V1.0</p>
+        </span>
+    </div>
+    <div style="height: 5px;"></div>
+</body>
+
+<script>
+    function mouseOver() {
+        document.getElementById("mainimg").src = "./src/tx.jpg";//鼠标悬浮时的旋转图标
+    }
+    function mouseOut() {
+        document.getElementById('mainimg').src = "./src/tx2.jpg"//默认的旋转图标
+    }
+</script>
+
+<!-- 随机背景 -->
+<script type="text/javascript" src="./js/random_bg.js"></script>
+
+<!-- 粒子背景 -->
+<script type="text/javascript" src="./js/canvas.js"></script>
+<!-- <script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script> -->
+
+<script>
+    //音乐自动播放
+    $(document).ready(function () {
+        autoPlayMusic();
+        audioAutoPlay();
+    });
+    function audioAutoPlay() {
+        var audio = document.getElementById('bg-music');
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+    // 音乐播放
+    function autoPlayMusic() {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            musicPlay(true);
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(true);
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                musicPlay(true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+    function musicPlay(isPlay) {
+        var media = document.querySelector('#bg-music');
+        if (isPlay && media.paused) {
+            media.play();
+        }
+        if (!isPlay && !media.paused) {
+            media.pause();
+        }
+    }
+</script>
+
+</html>
