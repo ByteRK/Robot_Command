@@ -15,7 +15,7 @@ function change() {
     var randomBgIndex = Math.round(Math.random() * 12);
     var img1 = document.getElementById('bgimg');
     // img1.style.backgroundImage = 'url(' + bodyBgs[randomBgIndex] + ')';
-    img1.style.backgroundImage = 'url(' + bodyBgs[8] + ')';
+    img1.style.backgroundImage = 'url(' + bodyBgs[3] + ')';
     // window.setTimeout(function () { change() }, 10000);
 }
 change();

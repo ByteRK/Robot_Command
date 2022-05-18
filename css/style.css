@@ -344,17 +344,16 @@ b {
 }
 
 #partial {
-	color: white;
-	gap: 20px;
-	text-align: justify;
-	border-radius: 18px;
-
-	background: rgba(255, 255, 255, 0.6);
-	box-shadow: 0 25px 45px rgb(0 0 0 / 10%);
-	border: 2px rgba(255, 255, 255, 0.4) solid;
-
-	backdrop-filter: blur(4px);
-	background-color: rgba(89, 208, 247, 0.092);
+    color: #000000;
+    /* text-shadow: 0 0 20px #000000cf; */
+    gap: 20px;
+    text-align: justify;
+    border-radius: 18px;
+    background: rgb(255 255 255 / 69%);
+    box-shadow: 0 25px 45px rgb(0 0 0 / 10%);
+    border: 2px rgb(255 255 255) solid;
+    /* backdrop-filter: blur(4px); */
+    /* background-color: rgba(89, 208, 247, 0.092); */
 }
 
 .in.fade {
